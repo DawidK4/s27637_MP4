@@ -45,6 +45,7 @@ public class Order {
             throw new IllegalArgumentException("Order with a provided number already exists!");
         }
 
+        orders.add(orderNumber);
         this.orderNumber = orderNumber;
     }
 }
