@@ -8,13 +8,12 @@ public class Order {
     private int numberOfPieces;
     private static int maxNumberOfPieces;
 
-    private Set<String> orders = new HashSet<>();
+    private static Set<String> existingOrderNumbers = new HashSet<>();
 
-    public Order(String orderNumber, int numberOfPieces){
+    public Order(String orderNumber, int numberOfPieces) {
         setOrderNumber(orderNumber);
         setNumberOfPieces(numberOfPieces);
     }
-
 
     public int getNumberOfPieces() {
         return numberOfPieces;
@@ -41,11 +40,21 @@ public class Order {
             throw new IllegalArgumentException("Order number must not be null or empty!");
         }
 
-        if (orders.contains(orderNumber)){
-            throw new IllegalArgumentException("Order with a provided number already exists!");
+        if (this.orderNumber != null) {
+            existingOrderNumbers.remove(this.orderNumber);
         }
 
-        orders.add(orderNumber);
+        if (!existingOrderNumbers.add(orderNumber)) {
+            throw new IllegalArgumentException("Order with the provided number already exists!");
+        }
+
         this.orderNumber = orderNumber;
+    }
+
+    public static void setMaxNumberOfPieces(int max) {
+        if (max < 0) {
+            throw new IllegalArgumentException("Maximum number of pieces must not be negative!");
+        }
+        maxNumberOfPieces = max;
     }
 }
