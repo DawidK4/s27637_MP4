@@ -1,15 +1,17 @@
 package bag;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Website {
     private String url;
-    private Set<Visit> isVisitedBy;
+    private List<Visit> isVisitedBy;
 
     public Website(String url) {
         setUrl(url);
-        this.isVisitedBy = new HashSet<>();
+        this.isVisitedBy = new ArrayList<>();
     }
 
     public void addVisit(Visit visit) {

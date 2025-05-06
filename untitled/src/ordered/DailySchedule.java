@@ -25,7 +25,7 @@ public class DailySchedule {
         }
 
         includes.add(newTask);
-        includes.sort(Comparator.comparing(Task::getName)); // lub Comparator.comparing(Task::getDuration)
+        includes.sort(Comparator.comparing(Task::getName));
     }
 
     public List<Task> getTasksSortedByName() {

@@ -9,7 +9,7 @@ public class User {
     private final int userId;
     private String name;
     private String surname;
-    private Set<Visit> visits;
+    private List<Visit> visits;
 
     private static final Set<Integer> userIds = new HashSet<>();
 
@@ -22,7 +22,7 @@ public class User {
         }
         userIds.add(userId);
         this.userId = userId;
-        this.visits = new HashSet<>();
+        this.visits = new ArrayList<>();
 
         setName(name);
         setSurname(surname);
