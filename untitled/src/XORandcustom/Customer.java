@@ -1,4 +1,4 @@
-package XOR;
+package XORandcustom;
 
 import utils.ObjectPlusPlus;
 
@@ -9,12 +9,15 @@ public class Customer extends ObjectPlusPlus {
     private int id;
     private String name;
     private String surname;
+    private boolean isActive;
+
     private static Set<Integer> ids = new HashSet<>();
 
-    public Customer(int id, String name, String surname) {
+    public Customer(int id, String name, String surname, boolean isActive) {
         setId(id);
         setName(name);
         setSurname(surname);
+        setActive(isActive);
     }
 
     private void setId(int id) {
@@ -46,5 +49,13 @@ public class Customer extends ObjectPlusPlus {
         }
 
         this.surname = surname;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

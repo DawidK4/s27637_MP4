@@ -51,6 +51,4 @@ public abstract class ObjectPlus4 extends ObjectPlusPlus {
         }
         return false;
     }
-
-
 }

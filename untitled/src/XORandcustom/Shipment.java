@@ -1,4 +1,4 @@
-package XOR;
+package XORandcustom;
 
 import utils.ObjectPlus4;
 
@@ -11,11 +11,16 @@ public class Shipment extends ObjectPlus4 {
 
     public Shipment(int id) {
         setId(id);
+
         addXorRole("deliveredToCustomer");
         addXorRole("deliveredToPickupPoint");
     }
 
     public void deliverToCustomer(Customer customer) throws Exception {
+        if (!customer.isActive()) {
+            throw new Exception("Shipment cannot be delivered to an inactive customer.");
+        }
+
         addLinkXor("deliveredToCustomer", "receivesShipment", customer);
     }
 
@@ -23,14 +28,20 @@ public class Shipment extends ObjectPlus4 {
         addLinkXor("deliveredToPickupPoint", "hasShipment", pickupPoint);
     }
 
-    private void setId(int id) {
-        if (id < 0) throw new IllegalArgumentException("Id must be non-negative!");
-        if (ids.contains(id)) throw new IllegalArgumentException("Id must be unique!");
-        ids.add(id);
-        this.id = id;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("Id must not be negative!");
+        }
+
+        if (ids.contains(id)) {
+            throw new IllegalArgumentException("Id must be unique!");
+        }
+
+        ids.add(id);
+        this.id = id;
     }
 }

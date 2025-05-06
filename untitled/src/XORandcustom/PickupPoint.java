@@ -1,4 +1,4 @@
-package XOR;
+package XORandcustom;
 
 import utils.ObjectPlusPlus;
 
