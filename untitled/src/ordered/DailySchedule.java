@@ -2,6 +2,7 @@ package ordered;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class DailySchedule {
@@ -24,6 +25,13 @@ public class DailySchedule {
         }
 
         includes.add(newTask);
+        includes.sort(Comparator.comparing(Task::getName)); // lub Comparator.comparing(Task::getDuration)
+    }
+
+    public List<Task> getTasksSortedByName() {
+        return includes.stream()
+                .sorted(Comparator.comparing(Task::getName))
+                .toList();
     }
 
     public LocalDate getDate() {
