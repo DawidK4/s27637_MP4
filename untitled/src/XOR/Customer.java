@@ -1,49 +1,25 @@
 package XOR;
 
-import utils.ObjectPlus4;
+import utils.ObjectPlusPlus;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Customer extends ObjectPlus4 {
+public class Customer extends ObjectPlusPlus {
     private int id;
     private String name;
     private String surname;
-
-    private Set<Integer> ids;
+    private static Set<Integer> ids = new HashSet<>();
 
     public Customer(int id, String name, String surname) {
         setId(id);
         setName(name);
         setSurname(surname);
-        this.ids = new HashSet<>();
-
-        addXorRole("deliveredToCustomer");
-        addXorRole("deliveredToPickupPoint");
     }
 
-    // Only one XOR delivery is allowed
-    public void deliverTo(PickupPoint pickupPoint) throws Exception {
-        addLinkXor("deliveredToPickupPoint", "isDeliveredBy", pickupPoint);
-    }
-
-    public void deliverTo(Customer customer) throws Exception {
-        addLinkXor("deliveredToCustomer", "isDeliveredBy", customer);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        if (id < 0) {
-            throw new IllegalArgumentException("Id must not be negative!");
-        }
-
-        if (ids.contains(id)) {
-            throw new IllegalArgumentException("Id has to be unique!");
-        }
-
+    private void setId(int id) {
+        if (id < 0) throw new IllegalArgumentException("Id must be non-negative!");
+        if (ids.contains(id)) throw new IllegalArgumentException("Id must be unique!");
         ids.add(id);
         this.id = id;
     }
