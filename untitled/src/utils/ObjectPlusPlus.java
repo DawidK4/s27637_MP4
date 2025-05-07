@@ -139,4 +139,31 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
         Map<Object, ObjectPlusPlus> objectLinks = links.get(roleName);
         return objectLinks != null && !objectLinks.isEmpty();
     }
+
+    // My methods
+    public void removeLink(String roleName, String reverseRoleName, ObjectPlusPlus targetObject) throws Exception {
+        if (!links.containsKey(roleName)) {
+            throw new Exception("No links for the role: " + roleName);
+        }
+
+        Map<Object, ObjectPlusPlus> roleLinks = links.get(roleName);
+        Object keyToRemove = null;
+
+        for (Map.Entry<Object, ObjectPlusPlus> entry : roleLinks.entrySet()) {
+            if (entry.getValue().equals(targetObject)) {
+                keyToRemove = entry.getKey();
+                break;
+            }
+        }
+
+        if (keyToRemove != null) {
+            roleLinks.remove(keyToRemove);
+
+            // Usuwanie powiązania zwrotnego
+            if (targetObject.links.containsKey(reverseRoleName)) {
+                Map<Object, ObjectPlusPlus> reverseLinks = targetObject.links.get(reverseRoleName);
+                reverseLinks.values().remove(this);
+            }
+        }
+    }
 }

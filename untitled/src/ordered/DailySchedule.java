@@ -29,9 +29,7 @@ public class DailySchedule {
     }
 
     public List<Task> getTasksSortedByName() {
-        return includes.stream()
-                .sorted(Comparator.comparing(Task::getName))
-                .toList();
+        return new ArrayList<>(includes);
     }
 
     public LocalDate getDate() {

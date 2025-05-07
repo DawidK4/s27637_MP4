@@ -24,14 +24,15 @@ public class Department extends ObjectPlusPlus {
         addLink("lecturers", "department", lecturer);
     }
 
-    public void addHead(Lecturer lecturer) throws Exception {
-        addLink_subset("heads", "headDepartment", "lecturers", lecturer);
-    }
-
     public void removeLecturer(Lecturer lecturer) throws Exception {
         if (isLink("heads", lecturer)) {
-            throw new Exception("Cannot remove lecturer who is still a head. Remove from 'heads' first.");
+            removeLink("heads", "headDepartment", lecturer);
         }
+        removeLink("lecturers", "department", lecturer);
+    }
+
+    public void addHead(Lecturer lecturer) throws Exception {
+        addLink_subset("heads", "headDepartment", "lecturers", lecturer);
     }
 
     public void showAllLecturers() throws Exception {

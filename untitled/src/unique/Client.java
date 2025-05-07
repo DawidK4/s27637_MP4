@@ -1,9 +1,12 @@
 package unique;
 
+import utils.ObjectPlus;
+import utils.ObjectPlus4;
+
 import java.util.HashSet;
 import java.util.Set;
 
-public class Client {
+public class Client extends ObjectPlus4 {
     private String clientNumber;
     private String email;
 
