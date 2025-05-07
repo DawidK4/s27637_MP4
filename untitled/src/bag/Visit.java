@@ -45,7 +45,7 @@ public class Visit {
     }
 
     public void setVisitDate(LocalDate visitDate) {
-        if (visitDate.isBefore(LocalDate.now())) {
+        if (visitDate.isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("Visit date must not be in the future!");
         }
 

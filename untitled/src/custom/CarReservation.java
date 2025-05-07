@@ -19,6 +19,10 @@ public class CarReservation extends ObjectPlus4 {
     }
 
     public void setLicencePlate(String licencePlate) {
+        if (licencePlate == null || licencePlate.isEmpty()) {
+            throw new IllegalArgumentException("Licence plate must not be null or empty!");
+        }
+
         this.licencePlate = licencePlate;
     }
 
